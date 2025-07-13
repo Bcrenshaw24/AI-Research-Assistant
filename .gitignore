@@ -3,3 +3,5 @@ __pycache__
 .venv
 Attention-Research.pdf
 caching.py
+Dockerfile 
+.dockerignore

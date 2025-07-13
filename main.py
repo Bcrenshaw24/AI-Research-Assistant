@@ -7,7 +7,6 @@ from pydantic import BaseModel, Field
 from fastapi import FastAPI 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
-import asyncio
 
 app = FastAPI() 
 app.add_middleware(

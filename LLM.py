@@ -16,7 +16,7 @@ def generate(query, corpus):
     headers = {"Authorization": f"Bearer {KEY}"}
     data = {
         "model": "llama3-70b-8192",
-        "messages": [{"role": "user", "content": f"You are a helpful assistant, your job is to make topics easily digestible for students. Avoid mentioning the paper itself, dont show code, variables, or odd symbols. Instead explain and spell everything out fully. If the context that I give you doesnt match the question, say you cant help at the moment. Answer '{query}' only using '{context_str}'. "}],
+        "messages": [{"role": "user", "content": f"You are a helpful assistant, your job is to make topics easily digestible for students. Avoid mentioning the paper itself, symbols like ^, dont show code, variables, or odd symbols. Instead explain and spell everything out fully. Feel free to get more in to the math and equations. If the context that I give you doesnt match the question, say you cant help at the moment. Answer '{query}' only using '{context_str}'. "}],
         "temperature": 0.5,
         "max_tokens": 1024, 
         "stream": True
