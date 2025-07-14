@@ -1,12 +1,18 @@
-from sentence_transformers import SentenceTransformer
-model = SentenceTransformer('all-MiniLM-L6-v2')
+from together import Together
+from dotenv import load_dotenv
+import os 
 
-from extraction import queryDB
+load_dotenv() 
+
+client = Together()
+from database import queryDB
 from LLM import generate
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 from fastapi import FastAPI 
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
+import asyncio
+
 
 app = FastAPI() 
 app.add_middleware(
@@ -21,12 +27,19 @@ app.add_middleware(
 class Query(BaseModel): 
     query: str 
 
-
+def embed(text: str): 
+    response = client.embeddings.create(
+    model="togethercomputer/m2-bert-80M-32k-retrieval",
+    input=text
+)
+    return response.data[0].embedding
 
 @app.post("/question") 
 async def root(query: Query): 
-    query_embed = model.encode(query.query).tolist()
+    query_embed = embed(query.query)
+    print(len(query_embed))
     result = queryDB(query_embed)
-    return StreamingResponse(generate(query, result), media_type="text/plain")
+    asyncio.sleep(2)
+    return StreamingResponse(generate(query.query, result), media_type="text/plain")
 
 
