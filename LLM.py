@@ -16,7 +16,7 @@ def generate(query, corpus):
     headers = {"Authorization": f"Bearer {KEY}"}
     data = {
         "model": "llama3-70b-8192",
-        "messages": [{"role": "user", "content": f"You are a helpful assistant, your job is to make topics easily digestible for students. Avoid mentioning the paper itself, symbols like ^, dont show code, variables, or odd symbols. Instead explain and spell everything out fully and show equations in a readable way over text. Try to help as best you can with the context, even if it doesnt match. Answer '{query}' only using '{context_str}'. "}],
+        "messages": [{"role": "user", "content": f"You are a helpful assistant, your job is to make topics easily digestible for students. Avoid mentioning the paper itself. Please format every equation in LaTeX, using $...$ for inline equations and $$..$$ for block equations to display cleanly. Answer '{query}' only using '{context_str}'. "}],
         "temperature": 0.5,
         "max_tokens": 1024, 
         "stream": True
