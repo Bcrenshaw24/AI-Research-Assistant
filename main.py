@@ -34,7 +34,7 @@ def embed(text: str):
 )
     return response.data[0].embedding
 
-@app.post("/") 
+@app.post("/question") 
 async def root(query: Query): 
     query_embed = embed(query.query)
     print(len(query_embed))
