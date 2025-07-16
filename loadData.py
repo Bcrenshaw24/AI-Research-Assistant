@@ -1,7 +1,6 @@
-from main import embed
+
 import PyPDF2 
 import uuid
-from main import embed
 from database import index
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('all-mpnet-base-v2')
