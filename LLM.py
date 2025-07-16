@@ -16,7 +16,7 @@ def generate(query, corpus):
     headers = {"Authorization": f"Bearer {KEY}"}
     data = {
         "model": "llama3-70b-8192",
-        "messages": [{"role": "user", "content": f"You are a helpful assistant, your job is to make topics easily digestible for students. Avoid mentioning the paper itself. Please format every equation in LaTeX, using $...$ for inline equations and $$..$$ for block equations to display cleanly. Do not mention the soruces, even if unrelated, just try to help. Answer '{query}' only using relevant documents from '{context_str}'. "}],
+        "messages": [{"role": "user", "content": f"You are a helpful assistant, your job is to make topics easily digestible for students. Avoid mentioning the paper itself. Please format every equation in LaTeX, using $...$ for inline equations and $$..$$ for block equations to display cleanly. Do not mention the soruces or texts, even if unrelated, just try to help or ask them to rephrase. Answer '{query}' only using relevant documents from '{context_str}'. "}],
         "temperature": 0.5,
         "max_tokens": 1024, 
         "stream": True
