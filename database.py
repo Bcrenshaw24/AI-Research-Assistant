@@ -23,7 +23,7 @@ index = pc.Index(index_name)
 def queryDB(query, index=index): 
     result = index.query( 
         vector=query, 
-        top_k=12,
+        top_k=8,
         include_metadata=True
     )
     return result
